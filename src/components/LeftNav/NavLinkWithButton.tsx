@@ -29,7 +29,9 @@ const Button = styled.div`
 
     border: 1px solid #000046;
     border-radius: 5px;
+    width: 1.2vw;
 
+    
     
     
 `;
@@ -48,7 +50,7 @@ export const NavLinkWithButton: FC<INavLinkWithButtonProps> = (props) => {
         <Wrapper>
             <LeftImg src={props.frontImgSrc} />
             <p>{props.text}</p>
-            <Button><img src={props.buttonImgSrc} /></Button>
+            <Button><img src={props.buttonImgSrc} alt={props.text} /></Button>
         </Wrapper>
     )
 }

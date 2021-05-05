@@ -1,5 +1,6 @@
 export const Colors = {
     white: "#fff",
     black: "#000",
-    lightgray: "#ebebeb"
+    mainBackgroundColor: "#F5F5F5",
+    linkBlue: "#0645AD"
 };

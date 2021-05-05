@@ -27,6 +27,7 @@ const SearchBar = styled.input`
 
     border: none;
     outline: none;
+    
 
 `;
 

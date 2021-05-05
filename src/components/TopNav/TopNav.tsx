@@ -6,12 +6,12 @@ import comments from '../../media/icons/comments.png'
 import bell from '../../media/icons/bell.png'
 import logo from '../../media/logo.png';
 
-import { TopNavDropdown } from './TopNavDropdown/TopNavDropdown';
+import { NavDropdown} from './TopNavDropdown/NavDropdown'
 import { Search } from './Search';
 
 
 const Wrapper = styled.div`
-  
+  position: relative;
   display: flex;
   height: 50px;
   background-color: #fff;
@@ -19,7 +19,7 @@ const Wrapper = styled.div`
   align-items: center;
 
   box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
-  
+  z-index: 2;
 
 `;
 
@@ -41,7 +41,8 @@ export const TopNav : FC = () => {
   return(
     <Wrapper>
       <Logo alt="" src={logo} />
-      <TopNavDropdown/>
+      <NavDropdown />
+      {/* <TopNavDropdown/> */}
       <Search/>
       <RightIcons>
         <img alt="house" src={house} />
