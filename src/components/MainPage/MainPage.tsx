@@ -11,6 +11,7 @@ import { useDispatch } from 'react-redux';
 import { getUsers } from '../../actions/usersActions'
 import { getPosts } from '../../actions/postsActions';
 import { getPhotos } from '../../actions/photosActions';
+import { getComments } from '../../actions/commentsActions';
 
 import { LeftNav } from '../LeftNav/LeftNav';
 import { TopNav } from '../TopNav/TopNav';
@@ -19,6 +20,8 @@ import { Colors } from '../../styledHelpers/Colors'
 import { EntitiesPage } from '../EntitiesPage/EntitiesPage';
 import { EcosystemPage } from '../EcosystemPage/EcosystemPage';
 import { PublicationsPage } from '../PublicationsPage/PublicationsPage';
+import { Profile } from '../Profile/Profile';
+
 
 const Wrapper = styled.div`
   background-color: ${Colors.mainBackgroundColor};
@@ -41,6 +44,7 @@ const Content = styled.div`
 type GetUsers = ReturnType<typeof getUsers>
 type GetPosts = ReturnType<typeof getPosts>
 type GetPhotos = ReturnType<typeof getPhotos>
+type GetComments = ReturnType<typeof getComments>
 
 export const MainPage: FC = () => {
 
@@ -54,6 +58,7 @@ export const MainPage: FC = () => {
       await dispatch<GetPhotos>(getPhotos());
       await dispatch<GetPosts>(getPosts());
       await dispatch<GetUsers>(getUsers());
+      await dispatch<GetComments>(getComments());
     }
 
     fetchData()
@@ -82,6 +87,7 @@ export const MainPage: FC = () => {
                   <Route path="/publications" component={PublicationsPage} />
                   <Route path="/ecosystem" component={EcosystemPage} />
                   <Route path="/entities" component={EntitiesPage} />
+                  <Route path='/profile' component={Profile} />
                 </Switch>
 
               </Content>

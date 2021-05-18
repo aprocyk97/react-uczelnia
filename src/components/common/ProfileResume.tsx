@@ -15,6 +15,7 @@ import { useSelector } from 'react-redux';
 import { IState } from '../../reducers';
 import { IUsersReducers } from '../../reducers/usersReducers';
 import { Colors } from '../../styledHelpers/Colors';
+import { Link } from 'react-router-dom';
 
 const Wrapper = styled.div`
     display: flex;
@@ -78,6 +79,10 @@ const Line = styled.div`
     width: 98%;
     margin: 1vh 0;
 `;
+const StyledLink = styled(Link)`
+    text-decoration: none;
+    color: ${Colors.linkBlue};
+`;
 
 interface IProfileResume {
     compact: boolean;
@@ -94,7 +99,7 @@ export const ProfileResume: FC<IProfileResume> = (props) => {
                     <SmallLogo alt="Avatar" src={logo} />
                     <CompactRight>
                         <SmallName>{usersList[0].name}</SmallName>
-                        <span>See profile</span>
+                        <StyledLink to={'/profile'}><span>See profile</span></StyledLink>
                     </CompactRight>
                 </SmallWrapper>
                 :

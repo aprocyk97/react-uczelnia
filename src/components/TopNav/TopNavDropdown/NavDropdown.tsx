@@ -38,7 +38,7 @@ const DropdownOpen = styled.div`
 	/* margin: 1.5vh 0 0 0; */
 	padding-top: 1vh;
 	position: absolute;
-	z-index: 1;
+	z-index: 0;
 	border: solid gray 1px;
 	border-top: none;
 	border-radius: 0 0 5px 5px;
@@ -72,7 +72,7 @@ const DropdownLink = styled(MenuLink)`
 	color: #000063;
 `;
 const DisplayLink = styled(DropdownLink)`
-	
+	z-index: 1;
 `;
 const UserWrapper = styled.div`
 	border-top: 1px solid gray;
