@@ -23,6 +23,7 @@ const Wrapper = styled.div`
     align-items: center;
     font-size:${fontSize[18]};
     margin: 0 10vh 0 2vh;
+	position: relative;
 
     width: 15vw;
 	height: 90%;
@@ -38,7 +39,7 @@ const DropdownOpen = styled.div`
 	/* margin: 1.5vh 0 0 0; */
 	padding-top: 1vh;
 	position: absolute;
-	z-index: 0;
+	z-index: 1;
 	border: solid gray 1px;
 	border-top: none;
 	border-radius: 0 0 5px 5px;
@@ -72,7 +73,9 @@ const DropdownLink = styled(MenuLink)`
 	color: #000063;
 `;
 const DisplayLink = styled(DropdownLink)`
-	z-index: 1;
+	position: relative;
+	background-color: #fff;
+	z-index: 2;
 `;
 const UserWrapper = styled.div`
 	border-top: 1px solid gray;
@@ -126,11 +129,11 @@ export const NavDropdown: FC = () => {
 
 	]
 	const DropdownLinksWorkspaces: DropdownLink[] = [
-		{ label: "Client contract", iconSrc: network, path: "/" },
-		{ label: "Supplier contract", iconSrc: network, path: "/" },
-		{ label: "Corporate", iconSrc: entities2, path: "/" },
-		{ label: "Group Norms", iconSrc: house, path: "/" },
-		{ label: "Real estate contracts", iconSrc: network, path: "/" },
+		{ label: "Client contract", iconSrc: network, path: "/workspaces/client-contract" },
+		{ label: "Supplier contract", iconSrc: network, path: "/workspaces/supplier-contract" },
+		{ label: "Corporate", iconSrc: entities2, path: "/workspaces/corporate" },
+		{ label: "Group Norms", iconSrc: house, path: "/workspaces/group-norms" },
+		{ label: "Real estate contracts", iconSrc: network, path: "/workspaces/real-estate-contracts" },
 	]
 
 	const WrappedToggle = () => {

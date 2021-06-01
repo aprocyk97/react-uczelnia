@@ -22,10 +22,12 @@ const StyledSlider = styled(Slider)`
     width: 100%;
     
     
+    
 
 `;
 const StyledWorkspaceItem = styled(WorkspacesItem)`
     margin: 1vh 0.5vw;
+    
 `;
 
 export const Workspaces: FC = () => {
@@ -34,7 +36,7 @@ export const Workspaces: FC = () => {
         dots: false,
         infinite: true,
         speed: 400,
-        slidesToShow: 4,
+        slidesToShow: 3,
         slidesToScroll: 1,
         className: 'slider'
       };

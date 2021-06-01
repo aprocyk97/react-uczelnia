@@ -6,4 +6,5 @@ export const Colors = {
     subtleTextGray: "#949494",
     strongerTextGray: "#696969",
     textDarkBlue: "#00007c",
+    lightBlueBackground : "#d9d9ec",
 };

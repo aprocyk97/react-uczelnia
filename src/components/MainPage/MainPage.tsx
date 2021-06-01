@@ -21,11 +21,12 @@ import { EntitiesPage } from '../EntitiesPage/EntitiesPage';
 import { EcosystemPage } from '../EcosystemPage/EcosystemPage';
 import { PublicationsPage } from '../PublicationsPage/PublicationsPage';
 import { Profile } from '../Profile/Profile';
+import { WorkspacesPage } from '../WorkspacesPage/WorkspacesPage';
 
 
 const Wrapper = styled.div`
   background-color: ${Colors.mainBackgroundColor};
-  min-height: 80vh;
+  min-height: 100vh;
 
 `;
 const Content = styled.div`
@@ -88,6 +89,7 @@ export const MainPage: FC = () => {
                   <Route path="/ecosystem" component={EcosystemPage} />
                   <Route path="/entities" component={EntitiesPage} />
                   <Route path='/profile' component={Profile} />
+                  <Route path='/workspaces' component={WorkspacesPage} />
                 </Switch>
 
               </Content>

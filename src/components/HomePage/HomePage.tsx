@@ -9,7 +9,7 @@ export const HomePage: FC = () => {
         <div>
             <LatestPublications />
             <Workspaces />
-            <ResumeWork />
+            <ResumeWork title='Resume your work' />
         </div>
     );
 };

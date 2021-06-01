@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { Component, FC, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components'
 import { ISingleComment } from '../../../entities/comments';
@@ -9,6 +9,8 @@ import { IPostsReducers } from '../../../reducers/postsReducers';
 import { IUsersReducers } from '../../../reducers/usersReducers';
 import { fontSize } from '../../../styledHelpers/FontSizes';
 import { FilteredResumes } from './FilteredResumes';
+
+import search from '../../../media/icons/search.svg';
 
 
 const Wrapper = styled.div`
@@ -26,13 +28,35 @@ const StyledTitle = styled.h1`
 const FilterInput = styled.input`
     height: 2.5vh;
     font-size:${fontSize[20]};
-    margin-left: auto;
+    
     margin-right: 2vw;
+    outline: none;
+    appearance: none;
+    border: none;
+    
+`;
+const InputWrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+
+    margin-left: auto;
+
+    background-color: #fff;
+    padding: 0.5vh 0.5vw;
+
+    border: 1px solid gray;
+    border-radius: 5px;
 `;
 
-export const ResumeWork: FC = () => {
+interface IResumeWork {
+    title: string;
+    className?: string;
+    bar?: any;
+}
 
-    const { commentsList } = useSelector<IState,ICommentsReducers>(globalState => globalState.comments);
+export const ResumeWork: FC<IResumeWork> = (props) => {
+
+    const { commentsList } = useSelector<IState, ICommentsReducers>(globalState => globalState.comments);
 
     const [filter, setFilter] = useState<string>('');
     const [filteredList, setFilteredList] = useState<ISingleComment[]>(commentsList);
@@ -42,13 +66,18 @@ export const ResumeWork: FC = () => {
     }, [filter])
 
     return (
-        <Wrapper>
+        <Wrapper className={props.className}>
             <TopBar>
-                <StyledTitle>Resume your work</StyledTitle>
-                <FilterInput type='text' value={filter} placeholder='Filter by title...' onChange={e => { setFilter(e.target.value) }} />
+                <StyledTitle>{props.title}</StyledTitle>
+                <InputWrapper>
+                    <FilterInput type='text' value={filter} placeholder='Filter by title...' onChange={e => { setFilter(e.target.value) }} />
+                    <img src={search} />
+                </InputWrapper>
 
 
             </TopBar>
+            <div ></div>
+            {props.bar}
             <FilteredResumes itemList={filteredList} filter={filter} />
         </Wrapper>
     );
