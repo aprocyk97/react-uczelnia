@@ -18,6 +18,13 @@ import broadcast from '../../media/icons/broadcast.svg'
 
 import { Colors } from '../../styledHelpers/Colors';
 import { fontSize } from '../../styledHelpers/FontSizes';
+import { FilterBar } from './FilterBar';
+
+
+const Wrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
 
 const OptionsWrapper = styled.div`
     display: flex;
@@ -28,15 +35,19 @@ const OptionsWrapper = styled.div`
     .shareWrap{
         border:none;
     }
+
     .inputWrap{
         margin-left:auto;
     }
+
     .followedWrap{
         border:none;
     }
-    
-
 `;
+
+
+
+
 const DummySelect = styled.div`
     display: flex;
     flex-direction: row;
@@ -54,10 +65,12 @@ const DummySelect = styled.div`
     p{
         margin-right: 1vw;
     }
+
     img{
         width: 10px;
         height: 10px;
     }
+
     .follow{
         width: 20px;
         height: 20px;
@@ -73,8 +86,6 @@ const PartWrapper = styled.div`
     border-right: 1px solid gray;
     align-items: center;
 
-
-
     .dots{
         width: 25px;
         height: 25px;
@@ -84,23 +95,19 @@ const PartWrapper = styled.div`
 
     }
     
-    .filter{
-        
+    .filter{      
         width: 20px;
         height: 20px;
-        margin: 0 0.5vw;
-
-        
+        margin: 0 0.5vw; 
     }
-    .sort{
 
+    .sort{
         transform: rotate(-90deg);
         width: 20px;
         height: 20px;
-        margin: 0 0.5vw;
-
-        
+        margin: 0 0.5vw; 
     }
+
     .expand{
         width: 20px;
         height: 20px;
@@ -108,11 +115,13 @@ const PartWrapper = styled.div`
 
         cursor: pointer;
     }
+
     .share{
         width: 20px;
         height: 20px;
         margin: 0 0.5vw;
     }
+
     .followed{
         width: auto;
         padding: 0 1vw;
@@ -129,6 +138,7 @@ const ImgWrap = styled.div`
 
     cursor: pointer;
 `;
+
 const InputWrapper = styled.div`
     display: flex;
 
@@ -140,6 +150,7 @@ const InputWrapper = styled.div`
     margin-right: 1vw;
 
 `;
+
 const StyledTextInput = styled.input`
     background-color: transparent;
     border: none;
@@ -157,6 +168,9 @@ interface IOptionsBar {
 
     isSorted: boolean;
     setIsSorted: any;
+
+    isFullscreen: boolean;
+    setIsFulscreen:any;
 }
 
 
@@ -167,57 +181,72 @@ export const OptionsBar: FC<IOptionsBar> = (props) => {
     //     console.log(filter);
     // }, [filter])
 
-    const setSorted=() => {
+    const [filtersOpen, setFiltersOpen] = useState<boolean>(false);
+
+    const openFilters = () => {
+        setFiltersOpen(!filtersOpen);
+    }
+
+    const setSorted = () => {
         props.setIsSorted(!props.isSorted);
     }
 
+    const setFullscreen = () => {
+        props.setIsFulscreen(!props.isFullscreen);
+    }
+
     return (
-        <OptionsWrapper>
-            <PartWrapper>
-                <DummySelect>
-                    <p>All</p>
-                    <img src={arrowDown} />
-                </DummySelect>
-                <img className='dots' src={dots} />
-            </PartWrapper>
-            <PartWrapper>
-                <ImgWrap onClick={setSorted}>
-                    <img className='sort' src={exchange}  />
-                    <p>Sort</p>
-                </ImgWrap>
-                <ImgWrap>
-                    <img className='filter' src={filter} />
-                    <p>Filter</p>
-                </ImgWrap>
-            </PartWrapper>
-            <PartWrapper>
-                <img className='expand' src={expand} />
-            </PartWrapper>
-            <PartWrapper className='shareWrap'>
-                <ImgWrap>
-                <img className='share' src={share} />
-                <p>Share</p>
-                
-                </ImgWrap>
-            </PartWrapper>
-            <PartWrapper className='inputWrap'>
-                <InputWrapper>
-                    <StyledTextInput type='text' value={props.filter} onChange={e => props.setFilter(e.target.value)} placeholder='Search ...' />
-                    <img className='search' src={search} />
-                </InputWrapper>
-            </PartWrapper>
-            <PartWrapper className='followedWrap'>
-                <DummySelect className='followed'>
-                    <img className='follow' src={broadcast} />
-                    <p>Followed</p>
-                    <img src={arrowDown} />
-                </DummySelect>
-            </PartWrapper>
+        <Wrapper>
+            <OptionsWrapper>
+                <PartWrapper>
+                    <DummySelect>
+                        <p>All</p>
+                        <img src={arrowDown} />
+                    </DummySelect>
+                    <img className='dots' src={dots} />
+                </PartWrapper>
+                <PartWrapper>
+                    <ImgWrap onClick={setSorted}>
+                        <img className='sort' src={exchange} />
+                        <p>Sort</p>
+                    </ImgWrap>
+                    <ImgWrap onClick={openFilters}>
+                        <img className='filter' src={filter} />
+                        <p>Filter</p>
+                    </ImgWrap>
+                </PartWrapper>
+                <PartWrapper onClick={setFullscreen}>
+                    <img className='expand' src={expand} />
+                </PartWrapper>
+                <PartWrapper className='shareWrap'>
+                    <ImgWrap>
+                        <img className='share' src={share} />
+                        <p>Share</p>
 
+                    </ImgWrap>
+                </PartWrapper>
+                <PartWrapper className='inputWrap'>
+                    <InputWrapper>
+                        <StyledTextInput type='text' value={props.filter} onChange={e => props.setFilter(e.target.value)} placeholder='Search ...' />
+                        <img className='search' src={search} />
+                    </InputWrapper>
+                </PartWrapper>
+                <PartWrapper className='followedWrap'>
+                    <DummySelect className='followed'>
+                        <img className='follow' src={broadcast} />
+                        <p>Followed</p>
+                        <img src={arrowDown} />
+                    </DummySelect>
+                </PartWrapper>
+            </OptionsWrapper>
 
-
-
-
-        </OptionsWrapper>
+            {
+                filtersOpen ?
+                <FilterBar />
+                :
+                null
+            }
+            
+        </Wrapper>
     )
 }
